@@ -10,13 +10,13 @@ class MarkdownConverter(object):
 
     date_fmt = '%h %d %Y %H:%M:%S'
 
-    def __init__(self, zip_filepath):
-        self.zip_filepath = os.path.expanduser(zip_filepath)
+    def __init__(self, notes_filepath):
+        self.notes_filepath = os.path.expanduser(notes_filepath)
         self.stdout = False
 
     def convert(self):
-        if not os.path.exists(self.zip_filepath):
-            print("File does not exist: %s" % self.zip_filepath)
+        if not os.path.exists(self.notes_filepath):
+            print("File does not exist: %s" % self.notes_filepath)
             sys.exit(1)
         dict = {}
         db = []
@@ -29,7 +29,7 @@ class MarkdownConverter(object):
         posts = []
         exclude_dirs = set(['.git'])
         exclude_files = set(['.DS_Store', 'README.md'])
-        for root, dirs, files in os.walk(self.zip_filepath):
+        for root, dirs, files in os.walk(self.notes_filepath):
             dirs[:] = [d for d in dirs if d not in exclude_dirs]
             files[:] = [f for f in files if f not in exclude_files]
             index = 1
@@ -67,13 +67,10 @@ class MarkdownConverter(object):
         note_dict['meta_description'] = title.rstrip('\n')
         note_dict['author_id'] = 1
         note_dict['created_at'] = time.strftime(self.date_fmt, time.localtime(date_created))
-        # note_dict['created_at'] = date_created.strftime(self.date_fmt)
         note_dict['created_by'] = 1
         note_dict['updated_at'] = time.strftime(self.date_fmt, time.localtime(date_modified))
-        # note_dict['updated_at'] = date_modified.strftime(self.date_fmt)
         note_dict['updated_by'] = 1
         note_dict['published_at'] = time.strftime(self.date_fmt, time.localtime(date_created))
-        # note_dict['published_at'] = date_created.strftime(self.date_fmt)
         note_dict['published_by'] = 1
         note_dict['visibility'] = 'public'
         note_dict['mobiledoc'] = None
