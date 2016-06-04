@@ -1,13 +1,12 @@
-Adapted from the [ever2simple](https://github.com/claytron/ever2simple) project.  Thank you @claytron.
+# md2ghost
+Convert nested folders of markdown to [Ghost](https://github.com/TryGhost/Ghost) blog posts in json format according to import rules.  Adapted from the [ever2simple](https://github.com/claytron/ever2simple) project.
 
-Convert nested folders of markdown to [Ghost](https://github.com/TryGhost/Ghost) blog posts in json format according to import rules.
+# Usage
+`python -m /path/to/notes > /path/to/ghost.json`
 
-The conversion will ignore `.DS_Store` file and `.git` directory.
-
-Assumes:
+Assumes:  
 \- the title of the post is the first line in h1 followed by a space. E.g:
-`# This is my title`
+`# This is my title`  
 \- the author id is `1`
 
-Usage:
-`python -m /path/to/notes > /path/to/ghost.json`
+The conversion will ignore `.DS_Store` files and `.git` directory.
